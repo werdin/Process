@@ -793,8 +793,7 @@ class Process
                     throw new RuntimeException('Unable to kill the process');
                 }
             }
-            // given `SIGTERM` may not be defined and that `proc_terminate` uses the constant value and not the constant itself, we use the same here
-            $this->doSignal(15, false);
+            $this->doSignal($signal, false);
             do {
                 usleep(1000);
             } while ($this->isRunning() && microtime(true) < $timeoutMicro);
